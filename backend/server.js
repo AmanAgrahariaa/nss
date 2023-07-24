@@ -11,7 +11,7 @@ const User = require('./models/user');
 const Event = require('./models/event');
 const Admin = require('./models/admin');
 require('dotenv').config();
-const CORS_URL = process.env.CORS_URL;
+const CORS_URL = 'https://64be5e191518ad035ac51270--nssattendancesystem.netlify.app';
 const port = process.env.PORT || 5000;
 
 const moment = require('moment-timezone');

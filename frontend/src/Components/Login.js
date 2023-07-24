@@ -28,7 +28,7 @@ function Login() {
         return;
       }
 
-      const response = await fetch(`${backend_url}:5000/login`, {
+      const response = await fetch(`${backend_url}/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
