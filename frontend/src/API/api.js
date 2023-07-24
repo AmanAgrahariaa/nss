@@ -1,10 +1,10 @@
-const BASE_URL = 'http://localhost:5000';
-
+// const BASE_URL = 'http://localhost:5000';
+import { backend_url } from "../Components/services";
 export const checkAuth = async () => {
   try {
     const token = localStorage.getItem('token'); 
 
-    const response = await fetch(`${BASE_URL}/checkAuth`, {
+    const response = await fetch(`${backend_url}/checkAuth`, {
       method: 'GET',
       // Include cookies for authentication
       credentials: 'include', 

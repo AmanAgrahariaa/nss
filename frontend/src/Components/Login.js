@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Form, Button, Container, Row, Col } from 'react-bootstrap';
 import Home from './Home';
-
+import { backend_url } from './services';
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -28,7 +28,7 @@ function Login() {
         return;
       }
 
-      const response = await fetch('http://localhost:5000/login', {
+      const response = await fetch(`${backend_url}:5000/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

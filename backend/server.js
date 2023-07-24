@@ -10,7 +10,9 @@ const connectDatabase = require("./database/conn");
 const User = require('./models/user');
 const Event = require('./models/event');
 const Admin = require('./models/admin');
-const port = 5000;
+require('dotenv').config();
+const CORS_URL = process.env.CORS_URL;
+const port = process.env.PORT || 5000;
 
 const moment = require('moment-timezone');
 // Assuming you have the necessary imports and setup for the Event model
@@ -24,7 +26,7 @@ app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 app.use(cookieParser());
 app.use(bodyParser.json());
-app.use(cors({ origin: 'http://localhost:3000', credentials: true }));
+app.use(cors({ origin: CORS_URL, credentials: true }));
 
 
 router.get('/checkAuth', async (req, res) => {

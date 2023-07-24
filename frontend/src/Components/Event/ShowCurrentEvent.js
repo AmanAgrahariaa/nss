@@ -6,6 +6,7 @@ import { Container, Row, Col } from 'react-bootstrap';
 import { Button, Modal } from 'react-bootstrap';
 // import { PencilFill, TrashFill } from 'react-bootstrap-icons';
 import * as XLSX from 'xlsx';
+import { backend_url } from '../services';
 
 
 
@@ -37,7 +38,7 @@ const ShowEvent = () => {
 
     const fetchEvent = async () => {
         try {
-            const response = await fetch('http://localhost:5000/showEvents');
+            const response = await fetch(`${backend_url}/showEvents`);
             const data = await response.json();
             console.log(data);
             const event = data.find((event) => event._id === id);
@@ -50,7 +51,7 @@ const ShowEvent = () => {
 
     const fetchData = async () => {
         try {
-            const response = await fetch('http://localhost:5000/showUsers');
+            const response = await fetch(`${backend_url}/showUsers`);
             const data = await response.json();
             setUserData(data);
             setFilteredEntries(data);
@@ -62,7 +63,7 @@ const ShowEvent = () => {
 
     const handleAttendance = async (userId, userEmail) => {
         try {
-            const response = await fetch('http://localhost:5000/takeAttendance', {
+            const response = await fetch(`${backend_url}/takeAttendance`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -91,7 +92,7 @@ const ShowEvent = () => {
 
     const handleDeleteAttendance = async (userId, userEmail) => {
         try {
-            const response = await fetch('http://localhost:5000/deleteAttendance', {
+            const response = await fetch(`${backend_url}/deleteAttendance`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -297,15 +298,6 @@ const ShowEvent = () => {
     }
 
 
-    // const handleModalToggle = () => {
-    //     setShowModal(!showModal);
-    // };
-    // generate report 
-
-
-
-
-
     return (
         <>
             {
@@ -457,11 +449,6 @@ const ShowEvent = () => {
                                         <td>{student.course}</td>
                                         <td>{student.year}</td>
 
-                                        {/* <td>
-                                            <span className={`badge ${student.status === 'Present' ? 'bg-success' : 'bg-danger'}`}>
-                                                {student.status}
-                                            </span>
-                                        </td> */}
                                         <td>
                                             <button
                                                 onClick={() => handleAttendance(student._id, student.email)}

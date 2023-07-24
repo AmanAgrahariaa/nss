@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { Form, Button, Container, Row, Col } from 'react-bootstrap';
 // import Home from '../Home';
 import moment from 'moment-timezone';
-import { Link } from 'react-router-dom';
+import { backend_url } from '../services';
+
 
 
 const NewEventForm = () => {
@@ -41,7 +42,7 @@ const NewEventForm = () => {
     console.log("date time : " + convertedStartDate + " to " + convertedEndDate);
 
     try {
-      const response = await fetch('http://localhost:5000/addEvent', {
+      const response = await fetch(`${backend_url}/addEvent`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -64,7 +65,7 @@ const NewEventForm = () => {
   if (isLoggedIn) {
     window.location.href = '/';
   } 
-  
+
   return (
     <Container>
       <Row className="justify-content-center">

@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import { Button, Modal } from 'react-bootstrap';
 import { PencilFill, TrashFill } from 'react-bootstrap-icons';
 import * as XLSX from 'xlsx';
-
+import { backend_url } from "../services";
 
 const AdminHeader = () => {
     const [AttendanceData, setAttendanceData] = useState(null);
@@ -38,7 +38,7 @@ const AdminHeader = () => {
 
     const fetchData = async () => {
         try {
-            const response = await fetch('http://localhost:5000/showUsers');
+            const response = await fetch(`${backend_url}/showUsers`);
             const responseData = await response.json();
             setAttendanceData(responseData);
             setFilteredEntries(responseData);
@@ -192,7 +192,7 @@ const AdminHeader = () => {
         event.preventDefault();
 
         try {
-            const response = await fetch('http://localhost:5000/addUser', {
+            const response = await fetch(`${backend_url}/addUser`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(formData),
@@ -255,7 +255,7 @@ const AdminHeader = () => {
     const handleDelete = async () => {
         try {
             // Send DELETE request to delete member from the database
-            await fetch(`http://localhost:5000/deleteUser/${selectedAdminIdToDelete}`, {
+            await fetch(`${backend_url}/deleteUser/${selectedAdminIdToDelete}`, {
                 method: 'DELETE'
             });
 
@@ -285,7 +285,7 @@ const AdminHeader = () => {
         event.preventDefault()
         try {
             // Send edit / update request to update member from the database
-            await fetch(`http://localhost:5000/updateUser/${selectedMemberToEdit}`, {
+            await fetch(`${backend_url}/updateUser/${selectedMemberToEdit}`, {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(formDataInEditModel),
